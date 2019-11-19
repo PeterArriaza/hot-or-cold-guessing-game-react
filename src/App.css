@@ -7,7 +7,7 @@ main {
   padding: 10px;
 }
 
-.header {
+.nav {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -40,8 +40,17 @@ main {
 }
 
 .guessForm {
-  padding: 10px;
+  padding: 20px;
   display: block;
+  padding-bottom: -10px;
+}
+
+.guessForm input {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .guesses {
@@ -49,5 +58,12 @@ main {
   padding: 10px;
 }
 
-
+button {
+  border: none;
+  background-color: white;
+  border-radius: 3px;
+  color: black;
+  padding: 5px;
+  border-color: black;
+}
 
