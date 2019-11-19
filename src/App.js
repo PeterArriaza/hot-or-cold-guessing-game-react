@@ -50,7 +50,6 @@ export default class App extends React.Component {
     } else {
       feedback = 'You got it!';
       this.setState({solved: true});
-        
     }    
     this.setState({temperature: feedback});
   }
@@ -73,14 +72,14 @@ export default class App extends React.Component {
     console.log(this.state.answer);
     const guessCount = this.state.guessList.length;
     const numberOfGuess = ('Guess # ' + guessCount);
+    const solved = this.state.solved;
     return (
       <main>
         <nav className="nav">
           <TextElement type="button" text="How to Play" onClick={()=> alert(
             'The object of the game is to correctly guess the random number between 0-100 that is chosen by the computer.  You will receive feedback based on how close or far your guess is.  To get started, input a number into the guess box below!'
           )}/>
-          <TextElement type="button" text="+ New Game" onClick={() => this.reset()} ref={input => this.textInput = input}
-/>
+          <TextElement type="button" text="+ New Game" onClick={() => this.reset()} className={`${solved ? "highlightNewGame":""}`}/>
         </nav>
         <section className="gameForm">
           <div className="title">

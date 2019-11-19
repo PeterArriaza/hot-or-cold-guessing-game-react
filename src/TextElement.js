@@ -1,4 +1,6 @@
 import React from 'react';
+import './TextElement.css'
+
 
 export default function TextElement (props) {
     if (props.type === "text") {
@@ -9,9 +11,10 @@ export default function TextElement (props) {
         );
     }
     else if (props.type === "button") {
+
         return (
-            <div className={props.className}>
-                <button onClick={() => props.onClick()}>
+            <div>
+                <button className={props.className} onClick={() => props.onClick()}>
                     {props.text}
                 </button>
             </div>
