@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import TextElement from "./TextElement.js/index.js";
-import GuessForm from "./GuessForm.js";
-import GuessHistory from "./GuessHistory.js";
+import TextElement from "./TextElement";
+import GuessForm from "./GuessForm";
+import GuessHistory from "./GuessHistory";
 
 export default class App extends React.Component {
   constructor(props) {
