@@ -1,11 +1,13 @@
 {
   "name": "hot-n-cold",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-redux": "^5.0.2",
+    "redux": "^3.6.0"
   },
   "scripts": {
     "start": "react-scripts start",
