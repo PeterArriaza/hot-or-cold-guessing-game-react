@@ -3,30 +3,44 @@ import "./App.css";
 import TextElement from "./TextElement";
 import GuessForm from "./GuessForm";
 import GuessHistory from "./GuessHistory";
+import { connect } from "react-redux";
+import { initialState } from "../reducers/reducers";
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+import {
+  setGuessList,
+  setGuessNumber,
+  setTemperature,
+  setAnswer,
+  setSolved
+} from "../actions/actions";
 
-    this.state = {
-      guessList: [],
-      guessNumber: 0,
-      answer: Math.floor(Math.random() * 100) + 1,
-      temperature: "Guess a number b/w 0-100",
-      solved: false
-    };
-  }
+export class App extends React.Component {
+  // constructor(props) {
+  //   super(props);
+
+  //   //   this.state = {
+  //   //     guessList: [],
+  //   //     guessNumber: 0,
+  //   //     answer: Math.floor(Math.random() * 100) + 1,
+  //   //     temperature: "Guess a number b/w 0-100",
+  //   //     solved: false
+  // }
 
   handleSubmit(guessNumber) {
-    this.setState({ guessNumber }, () => this.checkGuess());
-    const guessList = this.state.guessList;
-
-    this.setState({ guessList: [...guessList, guessNumber] });
+    this.props.dispatch(setGuessNumber({ guessNumber }), () =>
+      this.checkGuess()
+    );
+    // this.setState({ guessNumber }, () => this.checkGuess());
+    // const guessList = this.props.guessList;
+    this.props.dispatch(
+      setGuessList({ guessList: [...this.props.guessList, guessNumber] })
+    );
+    // this.setState({ guessList: [...guessList, guessNumber] });
   }
 
   checkGuess() {
-    const guess = this.state.guessNumber;
-    const difference = Math.abs(guess - this.state.answer);
+    const guess = this.props.guessNumber;
+    const difference = Math.abs(guess - this.props.answer);
 
     let feedback;
     if (difference >= 40) {
@@ -47,28 +61,37 @@ export default class App extends React.Component {
       feedback = "You're Burning!!!";
     } else {
       feedback = "You got it!";
-      this.setState({ solved: true });
+      // this.setState({ solved: true });
+      this.props.dispatch(setSolved(true));
     }
-    this.setState({ temperature: feedback });
+    // this.setState({ temperature: feedback });
+    this.props.dispatch(setTemperature({ temperature: feedback }));
   }
 
   reset() {
     console.log("reset pressed");
-    this.setState({
-      guessList: [],
-      guessNumber: 0,
-      temperature: "Guess a number b/w 0-100",
-      answer: Math.floor(Math.random() * 100) + 1,
-      solved: false
-    });
+    // this.setState({
+    //   guessList: [],
+    //   guessNumber: 0,
+    //   temperature: "Guess a number b/w 0-100",
+    //   answer: Math.floor(Math.random() * 100) + 1,
+    //   solved: false
+    // });
+    this.props.dispatch(setGuessList(initialState.guessList));
+    this.props.dispatch(setGuessNumber(initialState.guessNumber));
+    this.props.dispatch(setTemperature(initialState.temperature));
+    this.props.dispatch(setAnswer(initialState.answer));
+    this.props.dispatch(setSolved(initialState.solved));
   }
 
   render() {
     // for debugging
-    console.log(this.state.answer);
-    const guessCount = this.state.guessList.length;
+    console.log(this.props.answer);
+    const guessCount = 0;
+    console.log(this.props.guessList);
+    // this.props.guessList.length;
     const numberOfGuess = "Guess # " + guessCount;
-    const solved = this.state.solved;
+    const solved = this.props.solved;
     return (
       <main>
         <nav className="nav">
@@ -96,21 +119,31 @@ export default class App extends React.Component {
             <TextElement
               className="result"
               type="text"
-              text={this.state.temperature}
+              text={this.props.temperature}
             />
             <GuessForm
               className="guessForm"
               text="Enter Guess Here"
               onSubmit={value => this.handleSubmit(value)}
-              solved={this.state.solved}
+              solved={this.props.solved}
             ></GuessForm>
           </div>
           <div className="guesses">
             <TextElement type="text" text={numberOfGuess} />
-            <GuessHistory guesses={this.state.guessList}></GuessHistory>
+            {/* <GuessHistory guesses={this.props.guessList}></GuessHistory> */}
           </div>
         </section>
       </main>
     );
   }
 }
+
+export const mapStateToProps = state => ({
+  guessList: state.GuessList,
+  guessNumber: state.guessNumber,
+  temperature: state.temperature,
+  answer: state.answer,
+  solved: state.solved
+});
+
+export default connect(mapStateToProps)(App);
