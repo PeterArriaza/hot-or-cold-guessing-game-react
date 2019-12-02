@@ -1,0 +1,69 @@
+html {
+  background-color: slategray;
+}
+
+main {
+  max-width: 100%;
+  padding: 10px;
+}
+
+.nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.gameForm {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.title {
+  color: white;
+  font-size: 3em;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.mainArea {
+  background-color: lightblue;
+}
+
+.result {
+  background-color: crimson;
+  padding: 10px;
+  font-size: 2em;
+  color: white;
+}
+
+.guessForm {
+  padding: 20px;
+  display: block;
+  padding-bottom: -10px;
+}
+
+.guessForm input {
+  display: block;
+  padding: 10px;
+  text-align: center;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.guesses {
+  background-color: lightgreen;
+  padding: 10px;
+}
+
+button {
+  border: none;
+  background-color: white;
+  border-radius: 3px;
+  color: black;
+  padding: 5px;
+  border-color: black;
+}
+
