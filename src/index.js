@@ -1,14 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+<<<<<<< HEAD
 import Game from "./Game";
+=======
+import App from "./components/App";
+>>>>>>> master
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "react-redux";
 import store from "./store";
 
 ReactDOM.render(
   <Provider store={store}>
+<<<<<<< HEAD
     <Game />
+=======
+    <App />
+>>>>>>> master
   </Provider>,
   document.getElementById("root")
 );
